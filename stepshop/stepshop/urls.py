@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from stepshop.views import index, contacts
+from .views import index, contacts, products, product, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
     path('contacts/', contacts),
+    path('', index),
+    path('products/', products),
+    path('product/', product),
+    path('about/', about),
 ]
