@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import index, contacts, about, product
+from .views import index, contacts, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,4 @@ urlpatterns = [
     path('contacts/', contacts, name='contacts'),
     path('products/', include('mainapp.urls', namespace='products')),
     path('about/', about, name='about'),
-    path('product/', product, name='product'),
 ]
