@@ -1,7 +1,10 @@
 from django.urls import path
 
-# Не дописано
+from authapp.views import logout, login
+
+app_name = 'authapp'
+
 urlpatterns = [
-    # path('login/', name='login'),
-    # path('logout/', name='logout'),
+    path('login/', login, name='login'),
+    path('logout/', logout, name='logout'),
     ]
