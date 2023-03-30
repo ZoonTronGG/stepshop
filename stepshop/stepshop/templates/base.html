@@ -49,9 +49,16 @@ https://www.tooplate.com/view/2114-pixie
             </a>
             {% else %}
               <a href="{% url 'auth:login' %}" class="text-light">
-                <span>Войти</span>
+                <span>Войти </span>
               </a>
             {% endif %}
+
+            {% if basket %}
+                <a href="" class="basket">
+                    <span class="badge badge-dark">{{ basket.count }}</span>
+                </a>
+            {% endif %}
+
           </div>
         </div>
       </div>
