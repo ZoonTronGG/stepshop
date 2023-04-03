@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Products &ndash; нормальное название{% endblock %}
+
+{% block title %}{{ title|capfirst }}{% endblock %}
 
 {% block content %}
     <!-- Page Content -->
     <!-- Items Starts Here -->
-   {% include 'includes/inc_category_menu.html' %}
-  
+    {% include 'includes/inc_category_menu.html' %}
+
     <div class="featured container no-gutter">
         <div class="row posts">
-            {% for product in products %}
+
+          {% for product in products %}
           <div id="{{ product.id }}" class="item new col-md-4">
-              <a href="single-product.html">
+              <a href="{% url 'products:product' product.pk %}">
                 <div class="featured-item">
                   <img src="{% if product.image %}
                               {{ product.image.url }}
@@ -23,8 +25,9 @@
               </a>
           </div>
           {% endfor %}
-    </div>
+
         </div>
+    </div>
 
     <div class="page-navigation">
       <div class="container">
@@ -41,4 +44,5 @@
       </div>
     </div>
     <!-- Featred Page Ends Here -->
+
 {% endblock %}

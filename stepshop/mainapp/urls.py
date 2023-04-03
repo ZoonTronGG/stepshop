@@ -1,11 +1,10 @@
 from django.urls import path
 
-from .views import products
+from .views import products, product
 
 app_name = 'products'
 
 urlpatterns = [
     path('', products, name='index'),
+    path('product/<int:pk>', product, name='product'),
 ]
-# По гиту остается products и еще раз посмотреть url. Далее, заменить везде на static
-# Попровить везде ссылки и В футере возле копирайта дописать текущий год через теги

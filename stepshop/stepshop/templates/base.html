@@ -56,6 +56,12 @@ https://www.tooplate.com/view/2114-pixie
                   <span>Войти</span>
                 </a>
               {% endif %}
+
+           {% if basket %}
+              <a href="{#% url 'basket:view %#}" class="basket">
+                <span>{{ basket|length }}</span>
+              </a>
+            {% endif %}
           </div>
         </div>
       </div>
