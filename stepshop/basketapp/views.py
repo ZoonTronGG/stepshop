@@ -12,7 +12,7 @@ def basket(request):
         context = {
             'basket': basket,
         }
-        return render(request, 'basketapp/basket.html', context)
+        return render(request, 'basket/basket.html', context)
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -29,5 +29,7 @@ def basket_add(request, pk):
 
 
 def basket_remove(request, pk):
-    return render(request, 'basketapp/basket.html')
+    basket = get_object_or_404(Basket, pk=pk)
+    basket.delete()
 
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
