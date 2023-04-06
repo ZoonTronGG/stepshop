@@ -28,3 +28,14 @@
     background-color: #3a8bcd;
     border-radius: 50%;
 }
+#filters a {
+    color: #000000;
+}
+
+#filters a:hover {
+    color: #3a8bcd;
+}
+
+#filters a:active {
+    color: #3a8bcd;
+}
