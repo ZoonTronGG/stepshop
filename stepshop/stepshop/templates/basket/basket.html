@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %} {{title|title }} {% endblock %}
 
 {% block content %}
@@ -24,7 +24,11 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
+                <td>
+                    <input type="number" name="{{ item.pk }}"
+                           min="0"
+                           value="{{ item.quantity }}">
+                </td>
                 <td>{{ item.product.price }}</td>
                 <td>
                     <button class="btn btn-round">
@@ -34,13 +38,20 @@
             </tr>
             {% endfor %}
         </table>
-    </div>
-    <div class="row basket_summary">
-        <div class="col-12">
-            <h3>Всего товаров: {{ basket.0.total_quantity }}</h3>
-            <h3>Общая стоимость: ${{ basket.0.total_cost|floatformat:"g" }}</h3>
+        {% if basket %}
+
+        <div class="row basket_summary">
+            <div class="col-12">
+                <h3>Всего товаров: {{ basket.0.total_quantity }}</h3>
+                <h3>Общая стоимость: ${{ basket.0.total_cost|floatformat:"g" }}</h3>
+            </div>
         </div>
+        {% endif %}
     </div>
-</div>
-{% endif %}
-{% endblock %}
+
+    {% endif %}
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    {% endblock %}
