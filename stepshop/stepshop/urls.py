@@ -22,6 +22,7 @@ from .views import index, contacts, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin_staff/', include('adminapp.urls', namespace='admin_staff')),
     path('index/', index, name='index'),
     path('', index, name='index'),
     path('contacts/', contacts, name='contacts'),
