@@ -1,7 +1,22 @@
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
+from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def index(request):
+    title = 'админка/главная'
+
+    context = {
+        'title': title,
+    }
+
+    return render(request, 'admin_staff/index.html', context)
 
 
 def users(request):
@@ -17,11 +32,29 @@ def users(request):
         'users_list': users_list,
     }
 
-    return render(request, 'admin/users.html', context)
+    return render(request, 'admin_staff/users.html', context)
 
 
 def user_create(request):
-    pass
+    print(request)
+    title = 'пользователи/создание'
+
+    if request.method == 'POST':
+        print('if request.method == "POST":')
+        user_form = ShopUserRegisterForm(request.POST, request.FILES)
+        if user_form.is_valid():
+            print('if user_form.is_valid():')
+            user_form.save()
+            return HttpResponseRedirect(reverse('admin_staff:users'))
+    else:
+        user_form = ShopUserRegisterForm()
+
+    context = {
+        'title': title,
+        'user_form': user_form,
+    }
+
+    return render(request, 'admin_staff/user_create.html', context)
 
 
 def user_update(request, pk):
@@ -42,7 +75,7 @@ def categories(request):
         'categories_list': categories_list,
     }
 
-    return render(request, 'admin/categories.html', context)
+    return render(request, 'admin_staff/categories.html', context)
 
 
 def category_create(request):
@@ -69,7 +102,7 @@ def products(request, pk):
         'products_list': products_list,
     }
 
-    return render(request, 'admin/products.html', context)
+    return render(request, 'admin_staff/products.html', context)
 
 
 def product_create(request, pk):
