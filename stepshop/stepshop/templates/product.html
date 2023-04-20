@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load my_tags %}
 {% block title %}{{ title|capfirst }}: {{ product.name }}{% endblock %}
 
 {% block content %}
@@ -18,12 +18,10 @@
           <div class="col-md-6">
             <div class="product-slider">
               <div id="slider" class="flexslider">
-                {% if product.image %}
-                 <img src="{{ product.image.url }}"
-                      alt="{{ product.name }}"
+                  <img src="{{ product.image|media_folder_products }}"
+                       alt="{{ product.name }}"
                       title="{{ product.name }}"
                       class="img-fluid">
-                {% endif %}
               </div>
             </div>
           </div>
