@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "name": "Бобры",
-      "description": "Повторим"
+      "description": "Повторим",
+      "is_active": true
     }
   },
   {
@@ -12,7 +13,26 @@
     "pk": 2,
     "fields": {
       "name": "кеды",
-      "description": "Повторим"
+      "description": "Повторим",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 3,
+    "fields": {
+      "name": "Не бобры",
+      "description": "Точно не бобры",
+      "is_active": true
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk": 4,
+    "fields": {
+      "name": "Точно бебер",
+      "description": "Точно бебер",
+      "is_active": true
     }
   }
 ]
